@@ -1,0 +1,94 @@
+---
+output:
+  pdf_document:
+    latex_engine: xelatex
+    fig_caption: yes
+  word_document: default
+mainfont: Palatino
+header-includes:
+- \usepackage{caption}
+- \captionsetup[figure]{labelformat=empty}
+- \pagenumbering{gobble}
+---
+
+<center>
+
+![
+**Figure 1 | Indo-Pacific humpback dolphin in Hong Kong waters**  (**a**) Indo-Pacific humpback dolphin (_Sousa chinensis_), or Chinese white dolphin, in Hong Kong waters (Photo by E. Matrai). (**b**) Hong Kong waters. Black rectangle indicates a major habitat of _S. chinensis_. Our field surveys were conducted in this region. (**c**) Sighting records of _S. chinensis_ from April 2022 to March 2023 (data from the report submitted to AFCD in Hong Kong; Ref. 24). Red points indicate locations where _S. chinensis_ was sighted, with point size representing herd size. The white diamond marks the location where we sighted _S. chinensis_ and collected the “field positive control” samples for qPCR analysis  (silhouette credit, Chris huh, CC BY-SA, https://creativecommons.org/licenses/by-sa/3.0/). (**d**) Gravity filtration of seawater on a boat during the field survey.  
+](formatted_figs/Fig01_CWDSurvey.png){width=100%}
+
+</center>
+
+
+
+<center>
+
+![
+**Figure 2 | Standard curve, the limit of detection (LOD) and limit of quantification (LOQ) of the primers and probe specific to _Sousa chinensis_.** (**a**) Standard curve. The $x$-axis represents copy numbers of the CytB target region per qPCR reaction, and the $y$-axis represents $C_{t}$ value. Filled black points indicate data used to draw the linear regression line (50% of 24 replicates), while blue "+" symbols indicate those not used for the regression. Red solid line and black dashed line indicate LOD and LOQ, respectively. (**b**) Determination of LOD. Weibull type II model was selected as the best model. Different colors and symbols indicate LOD with different numbers of technical replicates. (**c**) Determination of LOQ. The $x$-axis represents copy numbers of the CytB target region per qPCR reaction and the $y$-axis represents the coefficient of variation (CV). The blue curve indicates a 6th order polynomial model (the best model), which was chosen based on the fitting residuals among 1-6th polynomial models (see Klymus et al. 2020 for details). Red vertical line indicates LOD, and "\*" indicates 35% CV, of which copy number is defined as LOQ.  
+](formatted_figs/Fig02_StdCurve.pdf){width=100%}
+
+</center>
+
+
+<center>
+
+![
+**Figure 3 | Detection of _Sousa chinensis_ eDNA from field seawater samples using qPCR.** qPCR-based detection of _S. chinensis_ eDNA from (**a**) surface and bottom water samples taken in July 2024, and (**b**) surface and bottom water samples taken in January 2025. Labels indicate the sample collection locations (see the metadata in the supporting information). Red and gray color indicate positive and negative detection, respectively. Upper and lower rectangles indicate the result for surface and bottom water layers, respectively. _S. chinensis_ silhouette indicates _S. chinensis_ sighting during the field survey (silhouette credit, Chris huh, CC BY-SA, https://creativecommons.org/licenses/by-sa/3.0/).
+](formatted_figs/Fig03_SurveyqPCR_ed.pdf){width=100%}
+
+</center>
+
+
+
+<!-- ------------------------------------------------
+# Supplementary Figures
+----------------------------------------------------- --> 
+
+
+
+<center>
+
+![
+**Figure S1 | Amplification of _S. chinensis_ and other cetacean species DNA.** (**a**) Amplification curve of the target region (CytB) of _Sousa chinensis_ (synthesized DNA). Different colors indicate different concentrations. (**b**-**e**) Amplification curve of (**b**) _S. chinensis_ tissue DNA (pink curve), (**c**) _Stenella coeruleoalba_ (red curve), (**d**) _Delphinus capensis_ (red curve), and (**e**) _Tursiops truncatus_ (red curve). For **c**-**e**, gray curves indicate amplification curves of different concentrations of standard DNA.    
+](formatted_figs/FigS01_RelatedSppAmp.pdf){width=100%}
+
+</center>
+
+
+<center>
+
+![
+**Figure S2 | Physical profiles of seawater at the sampling locations.** (**a**) Temperature, (**b**) salinity, and (**c**) dissolved oxygen (DO) at each sampling location for the summer survey in July 2024. (**d**) Temperature, (**e**) salinity, and (**f**) DO at each sampling location for the winter survey in January 2025. Different colors indicate different sampling locations, and labels indicate sampling locations.  
+](formatted_figs/FigS02_SurveyCTD.pdf){width=100%}
+
+</center>
+
+
+
+<center>
+
+![
+**Figure S3 | Concentrations of _Sousa chinensis_ eDNA from field seawater samples using qPCR.** Concentrations of _S. chinensis_ eDNA from (**a**) surface and (**b**) bottom water samples taken in July 2024, and (**c**) surface and (**d**) bottom water samples taken in January 2025. Labels indicate sample collection locations. Color density and size of each point represent eDNA concentration. All the eDNA concentrations are below the limit of quantification (LOQ) and are therefore unreliable, but the results are provided as supplementary information. _S. chinensis_ silhouette indicates _S. chinensis_ sighting during the field survey (silhouette credit, Chris huh, CC BY-SA, https://creativecommons.org/licenses/by-sa/3.0/).
+](formatted_figs/FigS03_SurveyqPCR_conc.pdf){width=100%}
+
+</center>
+
+
+
+<center>
+
+![
+**Figure S4 | The relationship between seawater physical properties and qPCR detection in July 2024 (Summer survey).** The relationship between qPCR detection of _Sousa chinensis_ eDNA and (**a**) the origin of water samples (surface or bottom), (**b**) temperature, (**c**) salinity, and (**d**) dissolved oxygen (DO), respectively. Red and blue colors indicate surface and bottom water samples, respectively. Lines indicate logistic regression, although all the regressions are not statistically significant. Note that only qualitative results were used for this analysis because the eDNA concentrations were below the limit of quantification (LOQ).  
+](formatted_figs/FigS04_SurveyEnvLogis1.pdf){width=100%}
+
+</center>
+
+
+<center>
+
+![
+**Figure S4 | The relationship between seawater physical properties and qPCR detection in January 2025 (Winter survey).** The relationship between qPCR detection of _Sousa chinensis_ eDNA and (**a**) the origin of water samples (surface or bottom), (**b**) temperature, (**c**) salinity, and (**d**) dissolved oxygen (DO), respectively. Red and blue colors indicate surface and bottom water samples, respectively. Lines indicate logistic regression, although all the regressions are not statistically significant. Note that only qualitative results were used for this analysis because the eDNA concentrations were below the limit of quantification (LOQ).  
+](formatted_figs/FigS05_SurveyEnvLogis2.pdf){width=100%}
+
+</center>
+

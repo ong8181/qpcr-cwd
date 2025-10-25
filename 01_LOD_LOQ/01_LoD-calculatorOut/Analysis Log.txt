@@ -1,0 +1,37 @@
+Analysis started: Fri Oct 24 13:39:39 2025
+
+
+These standards not included in CytB standard curve regression for copy estimate calculations, because they detected below 50%: 1
+
+
+Data Summary:
+"Standards"	"Target"	"Reps"	"Detects"	"Cq.mean"	"Cq.sd"	"Copy.CV"	"Cq.CV"	"Rate"
+1	"CytB"	24	11	38.5414545454545	0.683641772222318	0.500024280197419	0.50175301797958	0.458333333333333
+2	"CytB"	24	19	38.2523684210526	0.754857912349243	0.487980385868578	0.561167175489932	0.791666666666667
+20	"CytB"	24	24	35.2006666666667	0.433068492089392	0.279328283566023	0.307071051339721	1
+200	"CytB"	24	24	31.6675833333333	0.182557654184778	0.127853872866163	0.127047560367265	1
+2000	"CytB"	24	24	28.7497806258333	0.410355549393631	0.319001815742846	0.290287986280429	1
+20000	"CytB"	24	24	25.470182	0.273034199285584	0.193324383352787	0.190960199723793	1
+2e+05	"CytB"	24	24	21.7781327058333	0.113469596341696	0.0849758895421321	0.0787729216659782	1
+2e+06	"CytB"	24	24	18.2659382404167	0.116519380968681	0.0812676437088347	0.0808969671781574	1
+
+
+For CytB, the lowest standard with 95% or greater detection is: 20 copies/reaction.
+
+Assay summary:
+
+R.squared: The R-squared value of linear regression of all standards Cq-values vs log10 of the starting quantities.
+Slope: The slope of the linear regression.
+Intercept: The y-intercept of the linear regression.
+
+Low.95: The lowest standard with at least 95% positive detection.
+LOD: The 95% limit of detection as determined by probit modeling.
+LOQ: The limit of quantification as determined by decay modeling, using the user-selected CV threshold of: 0.35
+
+rep2.LOD: The effective limit of detection if analyzing in 2 replicates.
+rep3.LOD: The effective limit of detection if analyzing in 3 replicates.
+rep4.LOD: The effective limit of detection if analyzing in 4 replicates.
+rep5.LOD: The effective limit of detection if analyzing in 5 replicates.
+rep8.LOD: The effective limit of detection if analyzing in 8 replicates.
+
+
