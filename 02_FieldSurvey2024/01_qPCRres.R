@@ -15,8 +15,8 @@ dir.create("01_qPCRresOut")
 
 # Load data
 d <- read.csv("data/data_qpcr_202407.csv")
-llimit <- 2.875 # Max of NC
-d$detection1 <- (d$copies_ul > llimit) # Max of NC
+llimit <- 2.874 # Max of NC
+d$detection1 <- ((d$copies_ul > llimit) & (d$n_pos_rep >= 2))
 d$detection2 <- d$copies_ul
 d$detection2[d$copies_ul < llimit] <- 0 # Replace N.D. with 0
 d$date <- ymd(d$date)
@@ -31,7 +31,7 @@ d_bot <- d %>% filter(sur_bot == "bottom")
 # Visualize sampling locations
 # ------------------------------------------ #
 # Register AIP
-ggmap::register_stadiamaps("xxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")
+ggmap::register_stadiamaps("xxxxxxxxxxxxxx") # Use your own key
 # Draw Hong Kong Map
 hk_lonlat <- c(left = 113.8, right = 114.45, top = 22.6, bottom = 22.1)
 lt_lonlat <- c(left = 113.75, right = 114.1, top = 22.4, bottom = 22.12)
@@ -60,11 +60,11 @@ g1_2 <- ggmap(lt_map2) +
 # Prepare Phylopic
 img <- pick_phylopic(name = "Sousa chinensis", n = 1)
 img2 <- recolor_phylopic(img, fill = "pink2")
-get_attribution("7bed394a-90e1-4da0-9d07-5b080a2061f4")
+get_attribution("xxxxxxxxxxxx") # Use your own key
 
 # Qualitative visualization
 g2 <- ggmap(lt_map2) +
-  geom_phylopic(aes(x = 113.849, y = 22.192), img = img2, fill = "pink2", color = "gray20", alpha = 0.75, size = 0.005) +
+  geom_phylopic(aes(x = 113.849, y = 22.192), img = img2, fill = "pink2", color = "gray20", alpha = 0.75, height = 0.005) +
   geom_point(data = d, aes(x = lon, y = lat), color = "red3", shape = 4) +
   xlab(expression(paste("Longitude (", degree, "E)"))) +
   ylab(expression(paste("Latitude (", degree, "N)"))) +
@@ -77,7 +77,7 @@ g2 <- ggmap(lt_map2) +
 # ------------------------------------------ #
 # Qualitative visualization
 g3 <- ggmap(lt_map2) +
-  geom_phylopic(aes(x = 113.849, y = 22.188), fill = "pink2", color = "gray20", alpha = 0.75, img = img2, size = 0.005) +
+  geom_phylopic(aes(x = 113.849, y = 22.188), fill = "pink2", color = "gray20", alpha = 0.75, img = img2, height = 0.005) +
   geom_point(data = d_sur, aes(x = lon, y = lat, fill = detection1), size = 4, shape = 21) +
   geom_text_repel(data = d_sur, aes(x = lon, y = lat, label = sample_name %>% str_sub(end = 4)), max.overlaps = 25) +
   scale_fill_manual(name = "eDNA detected?", values = c("gray", "red3")) +
@@ -87,7 +87,7 @@ g3 <- ggmap(lt_map2) +
   NULL
 
 g4 <- ggmap(lt_map2) +
-  geom_phylopic(aes(x = 113.849, y = 22.188), fill = "pink2", color = "gray20", alpha = 0.75, img = img2, size = 0.005) +
+  geom_phylopic(aes(x = 113.849, y = 22.188), fill = "pink2", color = "gray20", alpha = 0.75, img = img2, height = 0.005) +
   geom_point(data = d_bot, aes(x = lon, y = lat, fill = detection1), size = 4, shape = 21) +
   geom_text_repel(data = d_bot, aes(x = lon, y = lat, label = sample_name %>% str_sub(end = 4)), max.overlaps = 25) +
   scale_fill_manual(name = "eDNA detected?", values = c("gray", "red3")) +
@@ -98,7 +98,7 @@ g4 <- ggmap(lt_map2) +
 
 # Quantitative visualization
 g5 <- ggmap(lt_map2) +
-  geom_phylopic(aes(x = 113.849, y = 22.188), fill = "pink2", color = "gray20", alpha = 0.75, img = img2, size = 0.005) +
+  geom_phylopic(aes(x = 113.849, y = 22.188), fill = "pink2", color = "gray20", alpha = 0.75, img = img2, height = 0.005) +
   geom_point(data = d_sur, aes(x = lon, y = lat, fill = detection2*100, size = detection2*100), shape = 21) +
   geom_text_repel(data = d_sur, aes(x = lon, y = lat, label = sample_name %>% str_sub(end = 4)), max.overlaps = 25) +
   scale_fill_gradient(name = "eDNA\n(copies/L seawater)", limits = c(0,10.0)*100, low = "gray", high = "red3") +
@@ -109,7 +109,7 @@ g5 <- ggmap(lt_map2) +
   NULL
 
 g6 <- ggmap(lt_map2) +
-  geom_phylopic(aes(x = 113.849, y = 22.188), fill = "pink2", color = "gray20", alpha = 0.75, img = img2, size = 0.005) +
+  geom_phylopic(aes(x = 113.849, y = 22.188), fill = "pink2", color = "gray20", alpha = 0.75, img = img2, height = 0.005) +
   geom_point(data = d_bot, aes(x = lon, y = lat, fill = detection2*100, size = detection2*100), shape = 21) +
   geom_text_repel(data = d_bot, aes(x = lon, y = lat, label = sample_name %>% str_sub(end = 4)), max.overlaps = 25) +
   scale_fill_gradient(name = "eDNA\n(copies/L seawater)", limits = c(0,10.00)*100, low = "gray", high = "red3") +
@@ -124,9 +124,14 @@ g6 <- ggmap(lt_map2) +
 # Combine surface and bottom samples
 # (Qualitative visualization only)
 # ------------------------------------------ #
+# Define the size of the rectangular
+rect_w <- 0.005
+rect_h <- 0.0025
+adjust_y <- 0.6
+
 # Qualitative visualization
 g7 <- ggmap(lt_map2) +
-  geom_phylopic(aes(x = 113.849, y = 22.188), fill = "pink2", color = "gray20", alpha = 0.75, img = img2, size = 0.005) +
+  geom_phylopic(aes(x = 113.849, y = 22.188), fill = "pink2", color = "gray20", alpha = 0.75, img = img2, height = 0.005) +
   geom_rect(data = d_sur, aes(xmin = lon - 0.005/1.9, xmax = lon + 0.005/1.9,
                               ymin = lat, ymax = lat + 0.6 * 0.0027,
                               fill = detection1), linewidth = 0.3, color = "black", alpha = 1) +

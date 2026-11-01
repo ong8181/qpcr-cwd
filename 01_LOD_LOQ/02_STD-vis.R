@@ -19,7 +19,7 @@ d_amp$quantity <- as.character(d_amp$quantity)
 # ------------------------------------------------------- #
 # Visualize
 # ------------------------------------------------------- #
-(g1 <- d_amp %>% #filter(plate == "P2") %>% 
+(g1 <- d_amp %>%
     ggplot(aes(x = cycle, y = delta_rn, group = id, color = factor(quantity))) +
     geom_line() + ggtitle("Delta Rn") + scale_color_igv(name = "Copies/µL") +
     facet_wrap(~plate, labeller = as_labeller(c("P1" = "Conc. 0.5-100 copies/µL x 24 replicates",
