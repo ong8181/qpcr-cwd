@@ -9,6 +9,8 @@ library(ggmap); packageVersion("ggmap") # 4.0.0
 library(ggrepel); packageVersion("ggrepel") # 0.9.5
 library(ggtext); packageVersion("ggtext") # 0.1.2
 library(rphylopic); packageVersion("rphylopic") # 1.5.0
+library(ggspatial); packageVersion("ggspatial") # 1.1.11
+library(sf); packageVersion("sf") # 1.1.3
 
 # Create output directory
 dir.create("01_qPCRresOut")
@@ -30,6 +32,21 @@ d_bot <- d %>% filter(sur_bot == "bottom")
 # ------------------------------------------ #
 # Visualize sampling locations
 # ------------------------------------------ #
+# Prepare scale bar
+map_decorations <- list(
+  # Set coordinate scale for ggmap (WGS84 (EPSG:4326))
+  coord_sf(crs = 4326, xlim = c(113.81, 113.95), ylim = c(22.18, 22.30), expand = FALSE),
+  # Add scale bar
+  annotation_scale(location = "br", height = unit(0.15, "cm"),
+                   pad_x = unit(0.4, "cm"), pad_y = unit(0.4, "cm"),
+                   text_cex = 0.8),
+  # Add a bearing
+  annotation_north_arrow(location = "br", which_north = "true",
+                         pad_x = unit(0.6, "cm"), pad_y = unit(0.7, "cm"),
+                         height = unit(1.0, "cm"), width = unit(0.8, "cm"),
+                         style = north_arrow_fancy_orienteering)
+)
+
 # Register AIP
 ggmap::register_stadiamaps("xxxxxxxxxxxxxx") # Use your own key
 # Draw Hong Kong Map
@@ -84,6 +101,8 @@ g3 <- ggmap(lt_map2) +
   xlab(expression(paste("Longitude (", degree, "E)"))) +
   ylab(expression(paste("Latitude (", degree, "N)"))) +
   ggtitle("Surface samples") +
+  theme(axis.text.y = element_text(angle = 90, hjust = 0.5)) +
+  map_decorations +
   NULL
 
 g4 <- ggmap(lt_map2) +
@@ -94,6 +113,8 @@ g4 <- ggmap(lt_map2) +
   xlab(expression(paste("Longitude (", degree, "E)"))) +
   ylab(expression(paste("Latitude (", degree, "N)"))) +
   ggtitle("Bottom samples") +
+  theme(axis.text.y = element_text(angle = 90, hjust = 0.5)) +
+  map_decorations +
   NULL
 
 # Quantitative visualization
@@ -101,22 +122,26 @@ g5 <- ggmap(lt_map2) +
   geom_phylopic(aes(x = 113.849, y = 22.188), fill = "pink2", color = "gray20", alpha = 0.75, img = img2, height = 0.005) +
   geom_point(data = d_sur, aes(x = lon, y = lat, fill = detection2*100, size = detection2*100), shape = 21) +
   geom_text_repel(data = d_sur, aes(x = lon, y = lat, label = sample_name %>% str_sub(end = 4)), max.overlaps = 25) +
-  scale_fill_gradient(name = "eDNA\n(copies/L seawater)", limits = c(0,10.0)*100, low = "gray", high = "red3") +
-  scale_size_continuous(name = "eDNA\n(copies/L seawater)", limits = c(0,10.0)*100) +
+  scale_fill_gradient(name = "eDNA\n(copies/L seawater)", limits = c(0,12.0)*100, low = "gray", high = "red3") +
+  scale_size_continuous(name = "eDNA\n(copies/L seawater)", limits = c(0,12.0)*100) +
   xlab(expression(paste("Longitude (", degree, "E)"))) +
   ylab(expression(paste("Latitude (", degree, "N)"))) +
   ggtitle("Surface samples") +
+  theme(axis.text.y = element_text(angle = 90, hjust = 0.5)) +
+  map_decorations +
   NULL
 
 g6 <- ggmap(lt_map2) +
   geom_phylopic(aes(x = 113.849, y = 22.188), fill = "pink2", color = "gray20", alpha = 0.75, img = img2, height = 0.005) +
   geom_point(data = d_bot, aes(x = lon, y = lat, fill = detection2*100, size = detection2*100), shape = 21) +
   geom_text_repel(data = d_bot, aes(x = lon, y = lat, label = sample_name %>% str_sub(end = 4)), max.overlaps = 25) +
-  scale_fill_gradient(name = "eDNA\n(copies/L seawater)", limits = c(0,10.00)*100, low = "gray", high = "red3") +
-  scale_size_continuous(name = "eDNA\n(copies/L seawater)", limits = c(0,10.00)*100) +
+  scale_fill_gradient(name = "eDNA\n(copies/L seawater)", limits = c(0,12.00)*100, low = "gray", high = "red3") +
+  scale_size_continuous(name = "eDNA\n(copies/L seawater)", limits = c(0,12.00)*100) +
   xlab(expression(paste("Longitude (", degree, "E)"))) +
   ylab(expression(paste("Latitude (", degree, "N)"))) +
   ggtitle("Bottom samples") +
+  theme(axis.text.y = element_text(angle = 90, hjust = 0.5)) +
+  map_decorations +
   NULL
 
 
@@ -144,6 +169,8 @@ g7 <- ggmap(lt_map2) +
   xlab(expression(paste("Longitude (", degree, "E)"))) +
   ylab(expression(paste("Latitude (", degree, "N)"))) +
   ggtitle("Summer survey in 2024.7") +
+  map_decorations +
+  theme(axis.text.y = element_text(angle = 90, hjust = 0.5)) +
   NULL
 
 
